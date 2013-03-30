@@ -1,0 +1,496 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>Closure from jQuery - starting Closure Tools</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<script>
+			// If the query includes 'print-pdf' we'll use the PDF print sheet
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+    <section>
+        <h1>How Google does it</h1>
+        <div>Using Closure Tools for large JavaScript applications</div>
+    </section>
+    <section>
+        <h2>
+            Who is this guy?
+        </h2>
+        <div>
+            Rhys Brett-Bowen
+        </div>
+        <ul>
+            <li class="fragment">Discovered Closure working at <a href="http://catch.com">Catch.com</a></li>
+            <li class="fragment">Started <a href="http://www.meetup.com/Closure-Tools/">Closure Tools Meetup</a></li>
+            <li class="fragment">Wrote <a href="https://github.com/rhysbrettbowen/PlastronJS">PlastronJS</a>, <a href="https://github.com/rhysbrettbowen/G-closure">The G</a>, <a href="https://github.com/rhysbrettbowen/Loader">and</a> <a href="https://github.com/rhysbrettbowen/closure-widgets">some</a> <a href="https://github.com/rhysbrettbowen/functional-closure">others</a></li>
+            <li class="fragment">NOT someone who works at Google</li>
+        </ul>
+    </section>
+    <section>
+        <h2>What is Closure Tools</h2>
+        Closure Tools is a set of tools that are used by Google to develop their large JavaScript applications (you know, like GMail, Maps, Docs etc).
+    </section>
+    <section>
+        <h2>History lesson</h2>
+        <ul>
+            <li>Google builds large javascript applications</li>
+            <li>pulls all these javascript functions laying around in to a library</li>
+            <li>large applications get bigger so need a way to minimize - builds a compiler</li>
+            <li>along the way they make a linter</li>
+            <li>also templates (formaerly know as soy)</li>
+            <li>open sources their efforts in 2009</li>
+            <li>release closure stylesheets</li>
+        </ul>
+    </section>
+    <section>
+        <h2>The lineup</h2>
+        <ul>
+            <li>Compiler - like Uglify or YUI compiler</li>
+            <li>Library - like Dojo or YUI Library</li>
+            <li>Templates - work on client side or server side (java)</li>
+            <li>Linter - lints to Google specifications and can even fix some style issues</li>
+            <li>Stylesheets - css preprocessor</li>
+        </ul>
+    </section>
+    <section>
+        <h2>A note on versions...</h2>
+        There are none.
+        Each update for the Closure Library is tested for backwards compatability with every other existing project at Google.
+        This means that if you want to use a new feature you don't have to port over your entire existing codebase - it will still work.
+    </section>
+    <section>
+        <section>
+            <h2>Closure Compiler</h2>
+            <h3>Advanced Optimizations</h3>
+            <ul>
+                <li>Aggressive renaming</li>
+                <li>Dead code removal</li>
+                <li>Function inlining</li>
+            </ul>
+        </section>
+        <section>
+            <h2>What does this mean?</h2>
+            <ul>
+                <li class="fragment">More code - less bytes</li>
+                <li class="fragment">We can be verbose - the code won't be</li>
+                <li class="fragment">We can use longer name(space)s</li>
+                <li class="fragment">Unused code is removed</li>
+                <li class="fragment">Code will run faster</li>
+            </ul>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>What's the catch?</h2>
+            <div>Code must be AO compatible</div>
+            <ul class="fragment">
+                <li>foo['bar'] !== foo.bar</li>
+                <li>{foo: 'bar'} becomes {a: 'bar'}</li>
+                <li>but {'foo': 'bar'} stays {'foo': 'bar'}</li>
+            </ul>
+            <div class="fragment">
+                Use property when internal only and strings when value is external. <a href="http://rhysbrettbowen.com/2012/05/dot-vs-square-bracket-notations-in.html">Read more</a>
+            </div>
+        </section>
+        <section>
+            <h2>What's the catch?</h2>
+            <div>Code must be AO compatible</div>
+<pre><code>var Class = function() {};
+Class.number = 1;</code></pre>
+            <ul>
+                <li class="fragment">must provide Class.number to use externally (enums)</li>
+<pre class="fragment"><code>goog.provide('Class.Number')
+/** @enum {number} */
+Class.Number = {
+    ONE: 1,
+    TWO: 2
+};</code></pre>
+                <li class="fragment">provide access through prototype</li>
+                <li class="fragment">put under another namespace</li>
+            </ul>
+        </section>
+        <section>
+            <h2>What about using libraries that aren't compatible...</h2>
+            <ul>
+                <li><a href="https://developers.google.com/closure/compiler/docs/api-tutorial3#externs">externs</a></li>
+                <ul>
+                    <li><a href="http://code.google.com/p/closure-compiler/source/browse/trunk/contrib/externs/">some extern files</a></li>
+                </ul>
+                <li>Closure Library</li>
+            </ul>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>Closure Library</h2>
+            <div>Built for use with the compiler</div>
+            <ul>
+                <li>Namespaced &amp; Functional</li>
+                <li>Classical inheritance</li>
+                <li>Type annotations</li>
+                <li>Dependency management</li>
+                <li>goog.ui.Component</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Namespaced &amp; Functional</h2>
+            <ul>
+                <li>Namespaced to separate code</li>
+                <li>Namespacing makes it easier to find functionality (not all on the $ object)</li>
+                <li>Functional makes it easier to override functionality</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Classical inheritance</h2>
+<pre><code>goog.provide('Class');
+goog.require('Super');
+/**
+ * @constructor
+ * @extends {Super}
+ */
+Class = function() {
+    goog.base(this);
+};
+goog.inherits(Class, Super);
+
+/**
+ * @inheritDoc
+ */
+Class.prototype.method = function(arg) {
+    return goog.base(this, 'method', arg);
+};
+</code></pre>
+        </section>
+        <section>
+            <h2>Type annotations</h2>
+            <ul>
+                <li><a href="https://developers.google.com/closure/compiler/docs/js-for-compiler">Annotating</a></li>
+                <li>Optional... mostly</li>
+                <li>Don't need to be explicit</li>
+            </ul>
+            <div class="fragment">We'll see some in the code</div>
+        </section>
+        <section>
+            <h2>Dependency management</h2>
+<pre><code>goog.provide('namespace');
+goog.require('othernamespace');
+</code></pre>
+            <div class="fragment">uncompiled</div>
+            <ul class="fragment">
+                <li>goog.provide will create the objects needed for the namespace if they don't exist</li>
+                <li>goog.require calls in files from goog.addDependency if not already done</li>
+                <li>Need the goog.addDependecy file made using depswriter.py<span class="fragment">... or let plovr do it</span></li>
+            </ul>
+            <div class="fragment">compiled</div>
+            <ul class="fragment">
+                <li>compiler will include all dependencies in a single file in the correct order</li>
+            </ul>
+            <div class="fragment">want Dependency Injection? try <a href="http://rhysbrettbowen.com/2012/10/dependency-injection-in-closure-ioc.html">Loader</a></div>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>goog.ui.component</h2>
+            <ul>
+                <li class="fragment">What we build our application out of</li>
+                <li class="fragment">javascript as it's added - <a href="https://plus.google.com/116910304844117268718/posts/UkaymyuTzaF">no more  waiting for $(document).ready</a></li>
+                <li class="fragment">Control those zombie references (extends <a href="http://closure-library.googlecode.com/svn/docs/class_goog_Disposable.html">disposable</a> &amp; <a href="http://closure-library.googlecode.com/svn/docs/class_goog_events_EventTarget.html">eventTarget</a>)</li>
+                <li class="fragment">this.getHandler().listen instead of goog.events.listen</li>
+                <li class="fragment">Create a heirarchy</li>
+                <li class="fragment">Can render new HTML and/or Decorate existing DOM structure</li>
+                <li class="fragment"><a href="http://code.google.com/p/closure-library/wiki/IntroToComponents">more on the lifecycle</a> or read the book</li>
+            </ul>
+        </section>
+        <section>
+            <h2>goog.ui.component</h2>
+            <div>Render</div>
+            <ul>
+                <li>render()</li>
+                <ul>
+                    <li>createDom()</li>
+                    <li>enterDocument()</li>
+                </ul>
+            </ul>
+            <div>... some time later ...</div>
+            <ul>
+                <li>dispose()</li>
+                <ul>
+                    <li>disposeInternal()</li>
+                    <li>exitDocument()</li>
+                </ul>
+            </ul>
+        </section>
+        <section>
+            <h2>goog.ui.component</h2>
+            <div>Decorate</div>
+            <ul>
+                <li>decorate()</li>
+                <ul>
+                    <li>canDecorate()</li>
+                    <li>decorateInternal()</li>
+                    <li>enterDocument()</li>
+                </ul>
+            </ul>
+            <div>... some time later ...</div>
+            <ul>
+                <li>dispose()</li>
+                <ul>
+                    <li>disposeInternal()</li>
+                    <li>exitDocument()</li>
+                </ul>
+            </ul>
+        </section>
+        <section>
+            <h2>goog.ui.component</h2>
+            <div>Children</div>
+            <ul>
+                <li>addChild(child, opt_render);</li>
+                <ul>
+                    <li>Will render to getContentElement()</li>
+                    <li>Optionally render manually to another element</li>
+                </ul>
+                <li>removeChild(child, opt_unrender);</li>
+                <ul>
+                    <li>Optionally call exitDocument and remove node</li>
+                    <li>if (opt_unrender) exitDocument();</li>
+                </ul>
+            </ul>
+        </section>
+        <section>
+            <h2>goog.ui.component</h2>
+            <div>so...</div>
+            <ul>
+                <li class="fragment">createDom for DOM creation</li>
+                <li class="fragment">canDecorate and decorateInternal for decorating existing structure</li>
+                <li class="fragment">enterDocument to setup handlers (<font color="#ff0099">use this.getHandler()</font>)</li>
+                <li class="fragment">exitDocument to cleanup enterDocument (<font color="#ff0099">if you need to</font>)</li>
+                <li class="fragment">disposeInternal for dispose that should only happen once</li>
+            </ul>
+        </section>
+    </section>
+    <section>
+        <h2>Build Tools</h2>
+        <ul>
+            <li>Plovr - Java based server already includes the tools</li>
+            <li>Maven - just google for Closure Tools and Maven</li>
+            <li>Yeoman generator - https://github.com/closureplease/generator-closure</li>
+            <li>Grunt - lots of plugins!</li>
+        </ul>
+    </section>
+    <section>
+        <section>
+            <h2>But we use jQuery</h2>
+            <div>jQuery has a great interface</div>
+            <pre><code contenteditable>
+$('.class').children().addClass('classChilren');
+            </code></pre>
+        </section>
+        <section>
+            <h2>Closure Library...</h2>
+            <ul>
+                <li class="fragment">Namespacing great for discoverability</li>
+                <li class="fragment">Functional instead of OO</li>
+            </ul>
+            <div class="fragment"v>but...
+            <pre><code contenteditable>
+goog.array.forEach(
+    goog.dom.getChildren(goog.dom.getElementByClass('class')),
+        function(child) {
+            goog.dom.classes.add(child, 'classChildren');
+        });
+            </code></pre>
+        </div>
+        </section>
+        <section>
+            <h2>Learn a new library?</h2>
+            <div>or just use an interface...</div>
+            <pre><code contenteditable>
+$('.class').children().addClass('classChilren');
+            </code></pre>
+            <div class="fragment">The G!</div>
+        </section>
+    </section>
+    <section>
+        <h2>Using the G</h2>
+<pre><code>goog.require('G');</code></pre>
+        <ul>
+            <li class="fragment">Just like jQuery - almost</li>
+            <li class="fragment">use $$.method instead of $.method</li>
+            <li class="fragment">$$.setSelectorEngine(engine) for better selector support</li>
+            <ul class="fragment">
+                <li><a href="http://closure-library.googlecode.com/svn/docs/closure_third_party_closure_goog_dojo_dom_query.js.html">goog.dom.query</a></li>
+                <li><a href="http://sizzlejs.com">Sizzle</a></li>
+                <li><a href="https://github.com/ded/qwery">Qwery</a></li>
+            </ul>
+            <li class="fragment">Even some (simple) jQuery plugins may work - just add to $$.fn</li>
+        </ul>
+    </section>
+    
+    <section>
+        <section>
+            <h2>More tools!</h2>
+            <ul>
+                <li>templates</li>
+                <li>linting</li>
+                <li>stylesheets</li>
+                <li>class minification</li>
+                <li>testing</li>
+            </ul>
+        </section>
+        <section>
+            <h2><a href="https://developers.google.com/closure/templates">Closure Templates</a></h2>
+            <ul>
+                <li>Compiled</li>
+                <li>Extensible functions</li>
+                <li>Client and Server-side</li>
+                <li>Translatable strings</li>
+            </ul>
+        </section>
+        <section>
+            <h2><a href="https://developers.google.com/closure/utilities">Closure Linter</a></h2>
+            <ul>
+                <li>lints for the <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google Javascript Style Guide</a></li>
+                <li>Strict mode for contributing to Closure Library</li>
+                <li>Style fixer</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Linting</h2>
+            <div class="fragment">gjslint -r js</div>
+<pre class="fragment"><code>
+...
+Found 17 errors, including 1 new errors, in 7 files (0 files OK).
+
+... The script can be run by executing: fixjsstyle -r js 
+</code></pre>
+        <div class="fragment">fixjsstyle -r js</div>
+        <br />
+        <div class="fragment">gjslint -r js</div>
+<pre class="fragment"><code>...
+Found 8 errors, including 0 new errors, in 5 files (2 files OK).
+</code></pre>
+        </section>
+        <section>
+            <h2><a href="http://code.google.com/p/closure-stylesheets/">Closure Stylesheets</a></h2>
+            <ul>
+                <li>Variables</li>
+                <li>Extensible functions</li>
+                <li>Mixins</li>
+                <li>Conditionals</li>
+                <li>Minification (<font color="#ff0099">including class name</font>)</li>
+                <li>Linting</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Class minification</h2>
+        <ul>
+            <li>Use Closure Stylesheets (coming soon in plovr)</li>
+            <li>'-' separator</li>
+            <li>goog.getCssName()</li>
+            <li>{css className} in templates</li>
+        </ul>
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>What's next?</h2>
+            <ul>
+                <li>Join the <a href="http://www.meetup.com/Closure-Tools/">Meetup</a></li>
+                <li>Discuss on the <a href="https://groups.google.com/forum/?fromgroups#!forum/closure-library-discuss">boards</a></li>
+                <li>Read the <a href="http://closure-library.googlecode.com/svn/docs/index.html">documentation</a> (use file index)</li>
+                <li>Go to <a href="http://closureplease.com">Closure Please</a> for the latest</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Buy this book!</h2>
+            <a href="http://www.amazon.com/gp/product/1449381871"><img src="cover_big.png" /></a>
+        </section>
+    </section>
+    <section>
+        <h2>Questions?</h2>
+        <div><a href="http://rhysbrettbowen.github.com/closure_from_jquery/">http://rhysbrettbowen.github.com/closure_from_jquery/</a></div>
+        <br />
+        <ul>
+            <li><a href="http://rhysbrettbowen.com">http://rhysbrettbowen.com</a></li>
+            <li><a href="https://twitter.com/RhysBB">@RhysBB</a></li>
+            <li><a href="https://plus.google.com/109445215696684436299">Google+</a></li>
+        </ul>
+    </section>
+
+    
+</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+			
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				
+				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '/socket.io/socket.io.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
+				]
+			});
+			
+		</script>
+
+	</body>
+</html>
