@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 
-		<title>Closure from jQuery - starting Closure Tools</title>
+		<title>How Google Does It</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
 		<meta name="author" content="Hakim El Hattab">
@@ -111,6 +111,9 @@
                 <li>Aggressive renaming</li>
                 <li>Dead code removal</li>
                 <li>Function inlining</li>
+                <li>
+                    <a href="http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/">sourcemaps</a>
+                </li>
             </ul>
         </section>
         <section>
@@ -129,8 +132,27 @@
             <div>Means mistakes are caught before run time where they may go unnoticed</div>
             <h4 class="fragment">Coming soon - JSWhiz: Static Analysis for memory managment</h3>
         </section>
+        <section>
+            <h2>It's awesome!</h2>
+            <img src="awesome.jpg" />
+        </section>
     </section>
     <section>
+        <section>
+            <h1>Prove it!</h1>
+        </section>
+        <section>
+            <img src="todo.png" alt="">
+        </section>
+        <section>
+            <img src="todospeed.png" alt="">
+        </section>
+    </section>
+    <section>
+        <section>
+            <h2>What's the catch</h2>
+            <img src="catch.jpg" />
+        </section>
         <section>
             <h2>What's the catch?</h2>
             <div>Code must be AO compatible</div>
@@ -213,6 +235,16 @@ Class.prototype.method = function(arg) {
 </code></pre>
         </section>
         <section>
+            <h2>Classical inheritance</h2>
+            <div>Looks long, but autocomplete!</div>
+                <ul>
+                    <li>Code organization</li>
+                    <li>Easy override functions</li>
+                    <li>Well understood</li>
+                    <li>Performance!</li>
+                </ul>
+        </section>
+        <section>
             <h2>Type annotations</h2>
             <ul>
                 <li><a href="https://developers.google.com/closure/compiler/docs/js-for-compiler">Annotating</a></li>
@@ -253,69 +285,12 @@ goog.require('othernamespace');
         </section>
         <section>
             <h2>goog.ui.component</h2>
-            <div>Render</div>
-            <ul>
-                <li>render()</li>
-                <ul>
-                    <li>createDom()</li>
-                    <li>enterDocument()</li>
-                </ul>
-            </ul>
-            <div>... some time later ...</div>
-            <ul>
-                <li>dispose()</li>
-                <ul>
-                    <li>disposeInternal()</li>
-                    <li>exitDocument()</li>
-                </ul>
-            </ul>
+            <img src="lifecycle.png" alt="">
         </section>
         <section>
             <h2>goog.ui.component</h2>
-            <div>Decorate</div>
-            <ul>
-                <li>decorate()</li>
-                <ul>
-                    <li>canDecorate()</li>
-                    <li>decorateInternal()</li>
-                    <li>enterDocument()</li>
-                </ul>
-            </ul>
-            <div>... some time later ...</div>
-            <ul>
-                <li>dispose()</li>
-                <ul>
-                    <li>disposeInternal()</li>
-                    <li>exitDocument()</li>
-                </ul>
-            </ul>
-        </section>
-        <section>
-            <h2>goog.ui.component</h2>
-            <div>Children</div>
-            <ul>
-                <li>addChild(child, opt_render);</li>
-                <ul>
-                    <li>Will render to getContentElement()</li>
-                    <li>Optionally render manually to another element</li>
-                </ul>
-                <li>removeChild(child, opt_unrender);</li>
-                <ul>
-                    <li>Optionally call exitDocument and remove node</li>
-                    <li>if (opt_unrender) exitDocument();</li>
-                </ul>
-            </ul>
-        </section>
-        <section>
-            <h2>goog.ui.component</h2>
-            <div>so...</div>
-            <ul>
-                <li class="fragment">createDom for DOM creation</li>
-                <li class="fragment">canDecorate and decorateInternal for decorating existing structure</li>
-                <li class="fragment">enterDocument to setup handlers (<font color="#ff0099">use this.getHandler()</font>)</li>
-                <li class="fragment">exitDocument to cleanup enterDocument (<font color="#ff0099">if you need to</font>)</li>
-                <li class="fragment">disposeInternal for dispose that should only happen once</li>
-            </ul>
+            <div>using backbone?</div>
+            <div><a href="http://github.com/rhysbrettbowen/Backbone.ComponentView">Backbone.ComponentView</a></div>
         </section>
     </section>
     <section>
@@ -368,7 +343,8 @@ $('.class').children().addClass('classChilren');
     </section>
     <section>
         <h3>How about a fancy MVC?</h3>
-
+        <div><a href="http://github.com/rhysbrettbowen/plastronjs">PlastronJS</a> or este.js</div>
+        <div>AngularJS Advanced mode coming soon</div>
     </section>
     <section>
         <h2><a href="https://developers.google.com/closure/templates">Closure Templates</a></h2>
@@ -438,8 +414,13 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
         </section>
         <section>
             <h3><a href="http://closureplease.com">Closure Please</a></h3>
-            All the latest and greatest tools
-            You should follow it too <a href="https://twitter.com/closureplease">@ClosurePlease</a>
+            All the latest and greatest tools including:
+            <ul>
+                <li><a href="http://google-opensource.blogspot.de/2012/08/leak-finder-new-tool-for-javascript.html">Leak Finder</a> - find memory leaks</li>
+                    <li><a href="https://github.com/google/module-server">Module Server</a></li>
+                    <li><a href="https://github.com/Steida/este">este</a> - development framework</li>
+            </ul>
+            <div>You should follow it too <a href="https://twitter.com/closureplease">@ClosurePlease</a></div>
         </section>
         <section>
             <h2>Buy this book!</h2>
