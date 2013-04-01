@@ -75,9 +75,9 @@
         <section>
             <h3>Some complaints</h3>
             <ul>
-                <li>Code is too long... <span class="fragment">autocomplete, or <a href="http://bolinfest.com/coffee/">several</a> <a href="https://github.com/hleumas/coffee-script">coffeescript</a> <a href="https://github.com/Steida/coffee2closure"projects</a></span></li>
+                <li>Code is too long... <span class="fragment">autocomplete, or <a href="http://bolinfest.com/coffee/">several</a> <a href="https://github.com/hleumas/coffee-script">coffeescript</a> <a href="https://github.com/Steida/coffee2closure">projects</a></span></li>
                 <li>Too large to learn... <span class="fragment">Namespacing makes it easier</span></li>
-                <li>No community... <span class="fragment"><a a href="https://groups.google.com/forum/?fromgroups#!forum/closure-library-discuss">Discussion boards</a> and a meetup</span></li>
+                <li>No community... <span class="fragment"><a a href="https://groups.google.com/forum/?fromgroups#!forum/closure-library-discuss">Discussion boards</a> and a <a href="http://www.meetup.com/Closure-Tools/">meetup</a></span></li>
                 <li>Looks more like java than javascript... <span class="fragment">Java has been building large applications for longer</span></li>
                 <li>Code in the library doesn't use well known performance hacks... <span class="fragment">We shouldn't need to write in hacks, let the compiler do it for us</span></li>
                 <li>Requires a build step...</li>
@@ -88,7 +88,7 @@
             <ul>
                 <li><a href="http://plovr.com/">Plovr</a> - Java based server already includes the tools</li>
                 <li><a href="http://maven.apache.org/">Maven</a> - just google for Closure Tools and Maven</li>
-                <li><a href="http://yeoman.io/">Yeoman</a> generator - https://github.com/closureplease/generator-closure</li>
+                <li><a href="http://yeoman.io/">Yeoman</a> <a href="https://github.com/closureplease/generator-closure">generator</a></li>
                 <li><a href="http://gruntjs.com/">Grunt</a> - lots of plugins!</li>
                 <li>See <a href="http://closureplease.com">Closure Please</a>for a big list</li>
             </ul>
@@ -252,11 +252,18 @@ Class.prototype.method = function(arg) {
                 <li>Optional... mostly</li>
                 <li>Don't need to be explicit</li>
             </ul>
+<pre><code>/**
+ * don't have to do this:
+ * @param {{a: string, b: number}} param1
+ * this will do to begin with:
+ * @param {Object} param2
+ */
+</code></pre>
         </section>
         <section>
             <h2>Dependency management</h2>
-<pre><code>goog.provide('namespace');
-goog.require('othernamespace');
+<pre><code>goog.provide('my.name.space');
+goog.require('other.name.space');
 </code></pre>
             <div class="fragment">uncompiled</div>
             <ul class="fragment">
@@ -427,6 +434,7 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
         <section>
             <h2>Buy this book!</h2>
             <a href="http://www.amazon.com/gp/product/1449381871"><img src="cover_big.png" /></a>
+            <a href='https://leanpub.com/started_with_closure'>Getting Started With Closure</a> - Coming Soon!
         </section>
     </section>
 
