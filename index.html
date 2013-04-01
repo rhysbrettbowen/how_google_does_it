@@ -1,9 +1,9 @@
-<!doctype html>  
+<!doctype html>
 <html lang="en">
-	
+
 	<head>
 		<meta charset="utf-8">
-		
+
 		<title>Closure from jQuery - starting Closure Tools</title>
 
 		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
@@ -11,9 +11,9 @@
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		
+
 		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-		
+
 		<link rel="stylesheet" href="css/main.css">
 		<link rel="stylesheet" href="css/theme/default.css" id="theme">
 
@@ -29,14 +29,14 @@
 		<script src="lib/js/html5shiv.js"></script>
 		<![endif]-->
 	</head>
-	
+
 	<body>
-		
+
 		<div class="reveal">
 
 			<!-- Used to fade in a background when a specific slide state is reached -->
 			<div class="state-background"></div>
-			
+
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
     <section>
@@ -51,43 +51,57 @@
             Rhys Brett-Bowen
         </div>
         <ul>
+            <li class="fragment">NOT someone who works at Google</li>
             <li class="fragment">Discovered Closure working at <a href="http://catch.com">Catch.com</a></li>
             <li class="fragment">Started <a href="http://www.meetup.com/Closure-Tools/">Closure Tools Meetup</a></li>
             <li class="fragment">Wrote <a href="https://github.com/rhysbrettbowen/PlastronJS">PlastronJS</a>, <a href="https://github.com/rhysbrettbowen/G-closure">The G</a>, <a href="https://github.com/rhysbrettbowen/Loader">and</a> <a href="https://github.com/rhysbrettbowen/closure-widgets">some</a> <a href="https://github.com/rhysbrettbowen/functional-closure">others</a></li>
-            <li class="fragment">NOT someone who works at Google</li>
         </ul>
     </section>
     <section>
-        <h2>What is Closure Tools</h2>
-        Closure Tools is a set of tools that are used by Google to develop their large JavaScript applications (you know, like GMail, Maps, Docs etc).
+        <section>
+            <h2>What is Closure Tools</h2>
+            Closure Tools is a set of tools that are used by Google to develop their large JavaScript applications (you know, like GMail, Maps, Docs etc).
+        </section>
+        <section>
+            <h2>Written for Large Applications</h2>
+            <ul>
+                <li class="fragment">Well organized</li>
+                <li class="fragment">Stable - no versioning</li>
+                <li class="fragment">Well tested - robust</li>
+                <li class="fragment">Backwards compatible</li>
+                <li class="fragment">Driven by Google for their products</li>
+            </ul>
+        </section>
+        <section>
+            <h3>Some complaints</h3>
+            <ul>
+                <li>Code is too long... <span class="fragment">autocomplete, or several coffeescript projects</span></li>
+                <li>Too large to learn... <span class="fragment">Namespacing makes it easier</span></li>
+                <li>No community... <span class="fragment"><a a href="https://groups.google.com/forum/?fromgroups#!forum/closure-library-discuss">Discussion boards</a> and a meetup</span></li>
+                <li>Looks more like java than javascript... <span class="fragment">Java has been building large applications for longer</span></li>
+                <li>Code in the library doesn't use well known performance hacks... <span class="fragment">We shouldn't need to write in hacks, let the compiler do it for us</span></li>
+                <li>Requires a build step...</li>
+            </ul>
+        </section>
+        <section>
+            <h2>Build Tools</h2>
+            <ul>
+                <li>Plovr - Java based server already includes the tools</li>
+                <li>Maven - just google for Closure Tools and Maven</li>
+                <li>Yeoman generator - https://github.com/closureplease/generator-closure</li>
+                <li>Grunt - lots of plugins!</li>
+            </ul>
+        </section>
     </section>
     <section>
-        <h2>History lesson</h2>
+        <h2>The Tools</h2>
         <ul>
-            <li>Google builds large javascript applications</li>
-            <li>pulls all these javascript functions laying around in to a library</li>
-            <li>large applications get bigger so need a way to minimize - builds a compiler</li>
-            <li>along the way they make a linter</li>
-            <li>also templates (formaerly know as soy)</li>
-            <li>open sources their efforts in 2009</li>
-            <li>release closure stylesheets</li>
+            <li class="fragment">Compiler - like Uglify or YUI compiler</li>
+            <li class="fragment">Library - like Dojo or YUI Library</li>
+            <li class="fragment">Templates - work on client side or server side (java)</li>
+            <li class="fragment">Linter - lints to Google specifications and can even fix some style issues</li>
+            <li class="fragment">Stylesheets - css preprocessor</li>
         </ul>
-    </section>
-    <section>
-        <h2>The lineup</h2>
-        <ul>
-            <li>Compiler - like Uglify or YUI compiler</li>
-            <li>Library - like Dojo or YUI Library</li>
-            <li>Templates - work on client side or server side (java)</li>
-            <li>Linter - lints to Google specifications and can even fix some style issues</li>
-            <li>Stylesheets - css preprocessor</li>
-        </ul>
-    </section>
-    <section>
-        <h2>A note on versions...</h2>
-        There are none.
-        Each update for the Closure Library is tested for backwards compatability with every other existing project at Google.
-        This means that if you want to use a new feature you don't have to port over your entire existing codebase - it will still work.
     </section>
     <section>
         <section>
@@ -108,6 +122,12 @@
                 <li class="fragment">Unused code is removed</li>
                 <li class="fragment">Code will run faster</li>
             </ul>
+        </section>
+        <section>
+            <h2>Closure Compiler</h2>
+            <h3>Static Analysis - type cheking</h3>
+            <div>Means mistakes are caught before run time where they may go unnoticed</div>
+            <h4 class="fragment">Coming soon - JSWhiz: Static Analysis for memory managment</h3>
         </section>
     </section>
     <section>
@@ -199,7 +219,6 @@ Class.prototype.method = function(arg) {
                 <li>Optional... mostly</li>
                 <li>Don't need to be explicit</li>
             </ul>
-            <div class="fragment">We'll see some in the code</div>
         </section>
         <section>
             <h2>Dependency management</h2>
@@ -300,17 +319,8 @@ goog.require('othernamespace');
         </section>
     </section>
     <section>
-        <h2>Build Tools</h2>
-        <ul>
-            <li>Plovr - Java based server already includes the tools</li>
-            <li>Maven - just google for Closure Tools and Maven</li>
-            <li>Yeoman generator - https://github.com/closureplease/generator-closure</li>
-            <li>Grunt - lots of plugins!</li>
-        </ul>
-    </section>
-    <section>
         <section>
-            <h2>But we use jQuery</h2>
+            <h2>Sound great, but we use jQuery</h2>
             <div>jQuery has a great interface</div>
             <pre><code contenteditable>
 $('.class').children().addClass('classChilren');
@@ -322,7 +332,7 @@ $('.class').children().addClass('classChilren');
                 <li class="fragment">Namespacing great for discoverability</li>
                 <li class="fragment">Functional instead of OO</li>
             </ul>
-            <div class="fragment"v>but...
+            <div class="fragment">but...
             <pre><code contenteditable>
 goog.array.forEach(
     goog.dom.getChildren(goog.dom.getElementByClass('class')),
@@ -334,49 +344,42 @@ goog.array.forEach(
         </section>
         <section>
             <h2>Learn a new library?</h2>
-            <div>or just use an interface...</div>
+            <div>or just use an interface, the closure library is great to build upon.</div>
             <pre><code contenteditable>
 $('.class').children().addClass('classChilren');
             </code></pre>
             <div class="fragment">The G!</div>
         </section>
+        <section>
+            <h2>Using the G</h2>
+<pre><code>goog.require('G');</code></pre>
+            <ul>
+                <li class="fragment">Just like jQuery - almost</li>
+                <li class="fragment">use $$.method instead of $.method</li>
+                <li class="fragment">$$.setSelectorEngine(engine) for better selector support</li>
+                <ul class="fragment">
+                    <li><a href="http://closure-library.googlecode.com/svn/docs/closure_third_party_closure_goog_dojo_dom_query.js.html">goog.dom.query</a></li>
+                    <li><a href="http://sizzlejs.com">Sizzle</a></li>
+                    <li><a href="https://github.com/ded/qwery">Qwery</a></li>
+                </ul>
+                <li class="fragment">Even some (simple) jQuery plugins may work - just add to $$.fn</li>
+            </ul>
+        </section>
     </section>
     <section>
-        <h2>Using the G</h2>
-<pre><code>goog.require('G');</code></pre>
+        <h3>How about a fancy MVC?</h3>
+
+    </section>
+    <section>
+        <h2><a href="https://developers.google.com/closure/templates">Closure Templates</a></h2>
         <ul>
-            <li class="fragment">Just like jQuery - almost</li>
-            <li class="fragment">use $$.method instead of $.method</li>
-            <li class="fragment">$$.setSelectorEngine(engine) for better selector support</li>
-            <ul class="fragment">
-                <li><a href="http://closure-library.googlecode.com/svn/docs/closure_third_party_closure_goog_dojo_dom_query.js.html">goog.dom.query</a></li>
-                <li><a href="http://sizzlejs.com">Sizzle</a></li>
-                <li><a href="https://github.com/ded/qwery">Qwery</a></li>
-            </ul>
-            <li class="fragment">Even some (simple) jQuery plugins may work - just add to $$.fn</li>
+            <li>Compiled</li>
+            <li>Extensible functions</li>
+            <li>Client and Server-side</li>
+            <li>Translatable strings</li>
         </ul>
     </section>
-    
     <section>
-        <section>
-            <h2>More tools!</h2>
-            <ul>
-                <li>templates</li>
-                <li>linting</li>
-                <li>stylesheets</li>
-                <li>class minification</li>
-                <li>testing</li>
-            </ul>
-        </section>
-        <section>
-            <h2><a href="https://developers.google.com/closure/templates">Closure Templates</a></h2>
-            <ul>
-                <li>Compiled</li>
-                <li>Extensible functions</li>
-                <li>Client and Server-side</li>
-                <li>Translatable strings</li>
-            </ul>
-        </section>
         <section>
             <h2><a href="https://developers.google.com/closure/utilities">Closure Linter</a></h2>
             <ul>
@@ -392,7 +395,7 @@ $('.class').children().addClass('classChilren');
 ...
 Found 17 errors, including 1 new errors, in 7 files (0 files OK).
 
-... The script can be run by executing: fixjsstyle -r js 
+... The script can be run by executing: fixjsstyle -r js
 </code></pre>
         <div class="fragment">fixjsstyle -r js</div>
         <br />
@@ -401,6 +404,8 @@ Found 17 errors, including 1 new errors, in 7 files (0 files OK).
 Found 8 errors, including 0 new errors, in 5 files (2 files OK).
 </code></pre>
         </section>
+    </section>
+    <section>
         <section>
             <h2><a href="http://code.google.com/p/closure-stylesheets/">Closure Stylesheets</a></h2>
             <ul>
@@ -416,9 +421,9 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
             <h2>Class minification</h2>
         <ul>
             <li>Use Closure Stylesheets (coming soon in plovr)</li>
-            <li>'-' separator</li>
-            <li>goog.getCssName()</li>
+            <li>goog.getCssName() around class names in the code</li>
             <li>{css className} in templates</li>
+            <li>done!</li>
         </ul>
         </section>
     </section>
@@ -429,17 +434,22 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
                 <li>Join the <a href="http://www.meetup.com/Closure-Tools/">Meetup</a></li>
                 <li>Discuss on the <a href="https://groups.google.com/forum/?fromgroups#!forum/closure-library-discuss">boards</a></li>
                 <li>Read the <a href="http://closure-library.googlecode.com/svn/docs/index.html">documentation</a> (use file index)</li>
-                <li>Go to <a href="http://closureplease.com">Closure Please</a> for the latest</li>
             </ul>
+        </section>
+        <section>
+            <h3><a href="http://closureplease.com">Closure Please</a></h3>
+            All the latest and greatest tools
+            You should follow it too <a href="https://twitter.com/closureplease">@ClosurePlease</a>
         </section>
         <section>
             <h2>Buy this book!</h2>
             <a href="http://www.amazon.com/gp/product/1449381871"><img src="cover_big.png" /></a>
         </section>
     </section>
+
     <section>
         <h2>Questions?</h2>
-        <div><a href="http://rhysbrettbowen.github.com/closure_from_jquery/">http://rhysbrettbowen.github.com/closure_from_jquery/</a></div>
+        <div><a href="http://rhysbrettbowen.github.com/how_google_does_it/">How Google Does It</a></div>
         <br />
         <ul>
             <li><a href="http://rhysbrettbowen.com">http://rhysbrettbowen.com</a></li>
@@ -448,7 +458,7 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
         </ul>
     </section>
 
-    
+
 </div>
 
 			<!-- The navigational controls UI -->
@@ -461,21 +471,21 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
 
 			<!-- Presentation progress bar -->
 			<div class="progress"><span></span></div>
-			
+
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
 		<script src="js/reveal.min.js"></script>
 
 		<script>
-			
+
 			// Full list of configuration options available here:
 			// https://github.com/hakimel/reveal.js#configuration
 			Reveal.initialize({
 				controls: true,
 				progress: true,
 				history: true,
-				
+
 				theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
@@ -489,7 +499,7 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
 					{ src: 'plugin/speakernotes/client.js', async: true, condition: function() { return window.location.host === 'localhost:1947'; } },
 				]
 			});
-			
+
 		</script>
 
 	</body>
