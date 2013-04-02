@@ -55,6 +55,8 @@
             <li class="fragment">Discovered Closure working at <a href="http://catch.com">Catch.com</a></li>
             <li class="fragment">Started <a href="http://www.meetup.com/Closure-Tools/">Closure Tools Meetup</a></li>
             <li class="fragment">Wrote <a href="https://github.com/rhysbrettbowen/PlastronJS">PlastronJS</a>, <a href="https://github.com/rhysbrettbowen/G-closure">The G</a>, <a href="https://github.com/rhysbrettbowen/Loader">and</a> <a href="https://github.com/rhysbrettbowen/closure-widgets">some</a> <a href="https://github.com/rhysbrettbowen/functional-closure">others</a></li>
+            <li class="fragment">Help on <a href="http://closureplease.com">Closure Please</a></li>
+            <li class="fragment">started writing <a href="https://leanpub.com/started_with_closure">Getting Started With Closure</a></li>
         </ul>
     </section>
     <section>
@@ -90,7 +92,7 @@
                 <li><a href="http://maven.apache.org/">Maven</a> - just google for Closure Tools and Maven</li>
                 <li><a href="http://yeoman.io/">Yeoman</a> <a href="https://github.com/closureplease/generator-closure">generator</a></li>
                 <li><a href="http://gruntjs.com/">Grunt</a> - lots of plugins!</li>
-                <li>See <a href="http://closureplease.com">Closure Please</a>for a big list</li>
+                <li>See <a href="http://closureplease.com">Closure Please</a> for a big list</li>
             </ul>
         </section>
     </section>
@@ -265,17 +267,12 @@ Class.prototype.method = function(arg) {
 <pre><code>goog.provide('my.name.space');
 goog.require('other.name.space');
 </code></pre>
-            <div class="fragment">uncompiled</div>
-            <ul class="fragment">
-                <li>goog.provide will create the objects needed for the namespace if they don't exist</li>
-                <li>goog.require calls in files from goog.addDependency if not already done</li>
-                <li>Need the goog.addDependecy file made using depswriter.py<span class="fragment">... or let plovr do it</span></li>
-            </ul>
-            <div class="fragment">compiled</div>
-            <ul class="fragment">
-                <li>compiler will include all dependencies in a single file in the correct order</li>
-            </ul>
-            <div class="fragment">want Dependency Injection? try <a href="http://rhysbrettbowen.com/2012/10/dependency-injection-in-closure-ioc.html">Loader</a></div>
+            <h3 class="fragment">uncompiled</h3>
+            <div class="fragment">run calcdeps.py to let the application know where to download dependencies from</div>
+            <h3 class="fragment">compiled</h3>
+            <div class="fragment">compiler will include all dependencies in a single file in the correct order</div>
+            <div class="fragment">Want Dependency Injection? try <a href="http://rhysbrettbowen.com/2012/10/dependency-injection-in-closure-ioc.html">Loader</a></div>
+            <div class="fragment">Want to try it on your non-closure project? <a href="https://github.com/closureplease/mantri#readme">Mantri</a></div>
         </section>
     </section>
     <section>
@@ -418,6 +415,7 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
                 <li>Join the <a href="http://www.meetup.com/Closure-Tools/">Meetup</a></li>
                 <li>Discuss on the <a href="https://groups.google.com/forum/?fromgroups#!forum/closure-library-discuss">boards</a></li>
                 <li>Read the <a href="http://closure-library.googlecode.com/svn/docs/index.html">documentation</a> (use file index)</li>
+                <li><a href="http://rhysbrettbowen.github.com/closure_from_jquery/">Closure from jQuery</a> slides </li>
             </ul>
         </section>
         <section>
