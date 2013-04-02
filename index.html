@@ -371,13 +371,42 @@ $('.class').children().addClass('classChilren');
             <img src="funny-monkeys.jpg" alt="">
         </section>
         <section>
-            <h2><a href="https://developers.google.com/closure/templates">Closure Templates</a></h2>
+            <h2>Closure Templates</h2>
             <ul>
                 <li>Compiled</li>
                 <li>Extensible functions</li>
                 <li>Client and Server-side</li>
                 <li>Translatable strings</li>
             </ul>
+        </section>
+        <section>
+            <h2>Closure Templates</h2>
+<pre><code>/**
+ * Greets a person using "Hello" by default.
+ * @param name The name of the person.
+ */
+{template .helloName}
+    {msg desc="hello string"}Hello {$name}!{/msg}
+{/template}
+
+/**
+ * Greets a person and optionally a list of other people.
+ * @param additionalNames The additional names to greet. May be an empty list.
+ */
+{template .helloNames}
+  // Greet the people.
+  {foreach $additionalName in $additionalNames}
+    {call .helloName}
+      {param name: $additionalName /}
+    {/call}
+    {if not isLast($additionalName)}
+      &lt;br>  // break after every line except the last
+    {/if}
+  {ifempty}
+    {msg desc="shown when done greeting"}No people to greet.{/msg}
+  {/foreach}
+{/template}
+</code></pre>
         </section>
     </section>
     <section>
@@ -386,7 +415,7 @@ $('.class').children().addClass('classChilren');
             <img src="monkey.jpg" alt="">
         </section>
         <section>
-            <h2><a href="https://developers.google.com/closure/utilities">Closure Linter</a></h2>
+            <h2>Closure Linter</h2>
             <ul>
                 <li>lints for the <a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google Javascript Style Guide</a></li>
                 <li>Strict mode for contributing to Closure Library</li>
@@ -413,18 +442,23 @@ Found 8 errors, including 0 new errors, in 5 files (2 files OK).
     <section>
         <section>
             <h2>Closure Stylesheets</h2>
+            <div>lint for style</div>
             <img src="lamb.jpg" alt="">
         </section>
         <section>
-            <h2><a href="http://code.google.com/p/closure-stylesheets/">Closure Stylesheets</a></h2>
-            <ul>
-                <li>Variables</li>
-                <li>Extensible functions</li>
-                <li>Mixins</li>
-                <li>Conditionals</li>
-                <li>Minification (<font color="#ff0099">including class name</font>)</li>
-                <li>Linting</li>
-            </ul>
+            <h2>Closure Stylesheets</h2>
+                <div>Variables</div>
+                <pre><code>@def WHITE #FFF</code></pre>
+                <div>Extensible functions</div>
+                <pre><code>width: add(LEFT, RIGHT);</code></pre>
+                <div>Mixins</div>
+                <pre><code>@defmixin size(h, w) {
+    height: h;
+    width: w;
+}
+@mixin size(100px, 100px);</code></pre>
+                <div>Conditionals</div>
+                <pre><code>@if (BROWSER_IE){}</code></pre>
         </section>
         <section>
             <h2>Class minification</h2>
